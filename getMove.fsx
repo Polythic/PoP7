@@ -8,8 +8,7 @@ let printBoard (b: board) : unit =
   printfn "  %A %A %A %A %A %A" b.[1] b.[2] b.[3] b.[4] b.[5] b.[6]
 
 let getMove (b: board) (p: player) (q: string) : pit =
-  printBoard b
-  printfn "%A %A" p q
+  printfn "%A" q
   let userInput : pit = int (System.Console.ReadLine())
   userInput
 
