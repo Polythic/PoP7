@@ -14,6 +14,21 @@ let getMove (b: board) (p: player) (q: string) : pit =
   let userInput : pit = int (System.Console.ReadLine())
   userInput
 
+let isGameOver (b: board) : bool =
+  let mutable i = 1
+  while b.[i] = 0 && i < 7 do
+    i <- i + 1
+  if i = 7 then
+    true
+  else
+    i <- 7
+    while b.[i] = 0 && i < 13 do
+      i <- i + 1
+    if i = 13 then
+      true
+    else
+      false
+
 let turn (b : board) (p : player) : board =
   let rec repeat (b: board) (p: player) (n: int) : board =
     printBoard b
