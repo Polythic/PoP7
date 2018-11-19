@@ -18,4 +18,5 @@ let turn (b : board) (p : player) : board =
        || (isGameOver b) then 
       newB
     else
-      repeat newB p (n + 1) repeat b p 0
+      repeat newB p (n + 1) 
+  repeat b p 0
