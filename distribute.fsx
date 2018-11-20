@@ -6,7 +6,7 @@ let distribute (b:board) (p:player) (i:pit) : board * player * pit =
   let mutable beanCount = b.[i]
   b.[i] <- 0
   let mutable pi = i + 1 //pit index
-  let notHome =
+  let oppHome =
     match p with
     | Player1 -> 0
     | Player2 -> 7
@@ -16,10 +16,13 @@ let distribute (b:board) (p:player) (i:pit) : board * player * pit =
     | Player2 -> 0
 
   while beanCount > 0 do
-    if pi <> notHome then
+    if pi <> oppHome then
       b.[pi] <- (b.[pi] + 1)
       beanCount <- beanCount - 1
-      pi <- pi + 1
+      if pi <> 13 then
+        pi <- pi + 1
+      else
+        pi <- 0
     else
       pi <- pi + 1
 
