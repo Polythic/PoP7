@@ -35,22 +35,23 @@ let isGameOver (b: board) : bool =
 let getMove (b: board) (p: player) (q: string) : pit =
   printfn "%A" q
   let userInput = int (System.Console.ReadLine())
-  if b.[userInput] <> 0 then
-
-    match p with
-    | Player1 ->
-      if userInput > 0 && userInput < 7 then
+  match p with
+  | Player1 ->
+    if userInput > 0 && userInput < 7 then
+      if b.[userInput] <> 0 then
         userInput
       else
-        99
-    | Player2 ->
-      if userInput > 7 && userInput < 14 then
+        98
+    else
+      99
+  | Player2 ->
+    if userInput > 7 && userInput < 14 then
+      if b.[userInput] <> 0 then
         userInput
       else
-        99
-  else
-    98
-
+        98
+    else
+      99
 
 let distribute (b:board) (p:player) (i:pit) : board * player * pit =
   let mutable beanCount = b.[i]
