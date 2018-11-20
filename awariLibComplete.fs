@@ -1,6 +1,6 @@
 module Awari
 type pit = int // intentionally left empty
-type board = pit list // intentionally left empty
+type board = pit array // intentionally left empty
 type player = Player1 | Player2
 
 // intentionally many missing implementations and additions
@@ -8,6 +8,14 @@ let printBoard (b: board) : unit =
   printfn "  %A %A %A %A %A %A" b.[13] b.[12] b.[11] b.[10] b.[9] b.[8]
   printfn "%A             %A" b.[0] b.[7]
   printfn "  %A %A %A %A %A %A" b.[1] b.[2] b.[3] b.[4] b.[5] b.[6]
+
+let isHome (b:board) (p:player) (i:pit) : bool =
+  if p = Player1 && i = 7 then
+    true
+  elif p = Player2 && i = 0 then
+    true
+  else
+    false
 
 let getMove (b: board) (p: player) (q: string) : pit =
   printfn "%A" q

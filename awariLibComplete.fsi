@@ -2,7 +2,7 @@ module Awari
 ///  Each player has a set of regular pits and one home pit. A pit holds zero or more beans
 type pit = int // intentionally left empty
 /// A board consists of pits.
-type board = pit list // intentionally left empty
+type board = pit array // intentionally left empty
 /// A game is played between two players
 type player = Player1 | Player2
 
