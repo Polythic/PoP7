@@ -17,11 +17,6 @@ let isHome (b:board) (p:player) (i:pit) : bool =
   else
     false
 
-let getMove (b: board) (p: player) (q: string) : pit =
-  printfn "%A" q
-  let userInput : pit = int (System.Console.ReadLine())
-  userInput
-
 let isGameOver (b: board) : bool =
   let mutable i = 1
   while b.[i] = 0 && i < 7 do
@@ -36,6 +31,45 @@ let isGameOver (b: board) : bool =
       true
     else
       false
+
+let getMove (b: board) (p: player) (q: string) : pit =
+  printfn "%A" q
+  let userInput : pit = int (System.Console.ReadLine())
+  userInput
+
+let distribute (b:board) (p:player) (i:pit) : board * player * pit =
+  let mutable beanCount = b.[i]
+  b.[i] <- 0
+  let mutable pi = i + 1 //pit index
+  let oppHome =
+    match p with
+    | Player1 -> 0
+    | Player2 -> 7
+  let home =
+    match p with
+    | Player1 -> 7
+    | Player2 -> 0
+
+  while beanCount > 0 do
+    if pi <> oppHome then
+      b.[pi] <- (b.[pi] + 1)
+      beanCount <- beanCount - 1
+      if pi <> 13 then
+        pi <- pi + 1
+      else
+        pi <- 0
+    else
+      pi <- pi + 1
+
+  let finalPit = pi - 1
+  if b.[finalPit] = 1 then
+    b.[home] <- b.[home] + b.[14-(finalPit)]
+    b.[14-(finalPit)] <- 0
+    b.[home] <- b.[home] + 1
+    b.[finalPit] <- 0
+    (b,p,finalPit)
+  else
+    (b,p,finalPit)
 
 let turn (b : board) (p : player) : board =
   let rec repeat (b: board) (p: player) (n: int) : board =
