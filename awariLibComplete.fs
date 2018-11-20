@@ -40,7 +40,11 @@ let getMove (b: board) (p: player) (q: string) : pit =
 let distribute (b:board) (p:player) (i:pit) : board * player * pit =
   let mutable beanCount = b.[i]
   b.[i] <- 0
-  let mutable pi = i + 1 //pit index
+  let mutable pi =
+    if i <> 13 then
+      i + 1 //pit index
+    else
+      0
   let oppHome =
     match p with
     | Player1 -> 0
@@ -62,7 +66,7 @@ let distribute (b:board) (p:player) (i:pit) : board * player * pit =
       pi <- pi + 1
 
   let finalPit = pi - 1
-  if b.[finalPit] = 1 then
+  if b.[finalPit] = 1 && b.[finalPit] <> b.[home] then
     b.[home] <- b.[home] + b.[14-(finalPit)]
     b.[14-(finalPit)] <- 0
     b.[home] <- b.[home] + 1
