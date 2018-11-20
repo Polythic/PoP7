@@ -104,15 +104,15 @@ let turn (b : board) (p : player) : board =
       else
         "Again? "
     let i = getMove b p str
-    if i <> 99 then
+    if i = 98 then
+      repeat b p 98
+    elif i <> 99 then
       let (newB, finalPitsPlayer, finalPit)= distribute b p i
       if not (isHome b finalPitsPlayer finalPit)
         || (isGameOver b) then
         newB
       else
         repeat newB p (n + 1)
-    elif i = 98 then
-      repeat b p 98
     else
       repeat b p 99
   repeat b p 0
