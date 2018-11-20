@@ -34,8 +34,23 @@ let isGameOver (b: board) : bool =
 
 let getMove (b: board) (p: player) (q: string) : pit =
   printfn "%A" q
-  let userInput : pit = int (System.Console.ReadLine())
-  userInput
+  let userInput = int (System.Console.ReadLine())
+  if b.[userInput] <> 0 then
+
+    match p with
+    | Player1 ->
+      if userInput > 0 && userInput < 7 then
+        userInput
+      else
+        99
+    | Player2 ->
+      if userInput > 7 && userInput < 14 then
+        userInput
+      else
+        99
+  else
+    98
+
 
 let distribute (b:board) (p:player) (i:pit) : board * player * pit =
   let mutable beanCount = b.[i]
@@ -81,15 +96,24 @@ let turn (b : board) (p : player) : board =
     let str =
       if n = 0 then
         sprintf "Player %A's move? " p
+      elif n = 98 then
+        sprintf "Invalid move: pit is empty, please try again!"
+      elif n = 99 then
+        sprintf "Invalid move: illegal pit, please try again!"
       else
         "Again? "
     let i = getMove b p str
-    let (newB, finalPitsPlayer, finalPit)= distribute b p i
-    if not (isHome b finalPitsPlayer finalPit)
-       || (isGameOver b) then
-      newB
+    if i <> 99 then
+      let (newB, finalPitsPlayer, finalPit)= distribute b p i
+      if not (isHome b finalPitsPlayer finalPit)
+        || (isGameOver b) then
+        newB
+      else
+        repeat newB p (n + 1)
+    elif i = 98 then
+      repeat b p 98
     else
-      repeat newB p (n + 1)
+      repeat b p 99
   repeat b p 0
 
 let rec play (b : board) (p : player) : board =
