@@ -1,9 +1,6 @@
 type board = pit list
 type player = Player1 | Player2
 
-let turn (b:board) (p:player) : board
-
-
 let turn (b : board) (p : player) : board =
   let rec repeat (b: board) (p: player) (n: int) : board = 
     printBoard b
