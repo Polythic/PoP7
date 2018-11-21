@@ -1,8 +1,8 @@
 open Awari
 let testBoard1 : board = [|0;3;3;3;3;3;3;0;3;3;3;3;3;3|]
-let testBoard2 : board = [|0;3;3;3;3;3;3|]
-let testBoard3 : board = [|0;3;3;3;3;3;3|]
-let testBoard4 : board = [||]
+let testBoard2 : board = [|0;3;3;3;3;3;3;0;0;0;0;0;0;0|]
+let testBoard3 : board = [|0;0;0;0;0;0;0;0;3;3;3;3;3;3|]
+let testBoard4 : board = [|0;0;0;0;0;0;0;0;0;0;0;0;0;0|]
 
 
 printfn "Whitebox-testing af funktion isHome"
@@ -14,10 +14,10 @@ printfn " Branch: 3c - %b" (isHome testBoard1 Player1 5 = false)
 printfn " Branch: 3d - %b" (isHome testBoard1 Player2 1 = false)
 
 printfn "Whitebox-testing af funktionen isGameOver"
-printfn "Branch: 1a - %b" (isGameOver testBoard1 = true)
-printfn "Branch: 2a - %b" (isGameOver testBoard2 = false)
-printfn "Branch: 3a - %b" (isGameOver testboard3 = false)
-printfn "Branch: 4a - %b" (isGameOver testboard4 = false)
+printfn "Branch: 1a - %b" (isGameOver testBoard1 = false)
+printfn "Branch: 2a - %b" (isGameOver testBoard2 = true)
+printfn "Branch: 3a - %b" (isGameOver testBoard3 = true)
+printfn "Branch: 4a - %b" (isGameOver testBoard4 = true)
 
 
 printfn "Whitebox-testing af funktion distribute"
