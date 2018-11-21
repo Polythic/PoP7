@@ -1,1 +1,0 @@
-type pit = int
