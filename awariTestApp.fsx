@@ -10,8 +10,8 @@ let isHome (b:board) (p:player) (i:pit) : bool =
     false
     
     printfn "Whitebox-testning af funktion isHome"
-    printfn " Branch: 1a - %b" (isHome [] = )
-    printfn " Branch: 2a - %b" (isHome [] = )
+    printfn " Branch: 1a - %b" (p = Player1 & i = 7)
+    printfn " Branch: 2a - %b" (p = Player2 & i = 7)
     printfn " Branch: 3a - %b" (isHome [] = )
     Printfn " Branch: 4a - ‰b" (isHome [] = )
     
