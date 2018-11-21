@@ -18,19 +18,26 @@ let isHome (b:board) (p:player) (i:pit) : bool =
     false
 
 let isGameOver (b: board) : bool =
-  let mutable i = 1
-  while b.[i] = 0 && i < 7 do
-    i <- i + 1
-  if i = 7 then
-    true
-  else
-    i <- 8
-    while b.[i] = 0 && i < 14 do
-      i <- i + 1
-    if i = 14 then
-      true
-    else
-      false
+  let p1Board = b.[1..6]
+  let p2Board = b.[8..13]
+  let mutable p1 = 0
+  let mutable p2 = 0
+  let p1Empty =
+    for i in p1Board do
+      if i <> 0 then
+        p1 <- p1 + 1
+      else
+        p1 <- p1
+    p1 = 0
+  let p2Empty =
+    for i in p2Board do
+      if i <> 0 then
+        p2 <- p2 + 1
+      else
+        p2 <- p2
+    p2 = 0
+
+  p1Empty || p2Empty
 
 let getMove (b: board) (p: player) (q: string) : pit =
   printfn "%A" q

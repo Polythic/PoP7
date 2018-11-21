@@ -1,29 +1,28 @@
 type pit = int
-type board = pit list
+type board = pit array
 let isGameOver (b: board) : bool =
-
   let p1Board = b.[1..6]
   let p2Board = b.[8..13]
   let mutable p1 = 0
   let mutable p2 = 0
-  let a =
+  let p1Empty =
     for i in p1Board do
       if i <> 0 then
         p1 <- p1 + 1
       else
         p1 <- p1
-  let b =
+    p1 = 0
+  let p2Empty =
     for i in p2Board do
       if i <> 0 then
         p2 <- p2 + 1
       else
         p2 <- p2
-  if a = 0 || b = 0 then
-    true
-  else
-    false
+    p2 = 0
 
-let testBoard : board = [0;0;0;3;0;0;0;8;0;0;0;0;0;0]
+  p1Empty || p2Empty
+
+let testBoard : board = [|0;0;0;0;1;0;0;8;0;0;9;0;0;0|]
 printfn "%A" (isGameOver testBoard)
 
 (* let mutable i = 1
