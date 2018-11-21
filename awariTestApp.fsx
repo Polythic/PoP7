@@ -19,6 +19,14 @@ printfn " Branch: 2a - %b" (isGameOver testBoard2 = true)
 printfn " Branch: 3a - %b" (isGameOver testBoard3 = true)
 printfn " Branch: 4a - %b" (isGameOver testBoard4 = true)
 
+printfn "Whitebox-testning af funktion getMove"
+// Uncomment lines to test with input at end of each line
+//printfn " Branch: 1a - %b" (getMove testBoard Player1 "" = 4) // input 4
+//printfn " Branch: 2a - %b" (getMove testBoard Player1 "" = 99) // input 8
+//printfn " Branch: 2b - %b" (getMove testBoard Player2 "" = 99) // input 3
+//printfn " Branch: 3a - %b" (getMove testBoard2 Player1 "" = 98) // input 1
+//printfn " Branch: 3b - %b" (getMove testBoard2 Player2 "" = 98) // input 8
+
 printfn "Whitebox-testning af funktionen distribute"
 printfn " Branch: 1a - %b" (distribute testBoard1 Player1 4 = ([|0;3;3;3;0;4;4;1;3;3;3;3;3;3|], Player1, 7))
 testBoard1 <- [|0;3;3;3;3;3;3;0;3;3;3;3;3;3|] // reset testBoard1
@@ -28,11 +36,3 @@ printfn " Branch: 3a - %b" (distribute testBoard1 Player1 11 = ([|0;4;3;3;3;3;3;
 testBoard1 <- [|0;3;3;3;3;3;3;0;3;3;3;3;3;3|] // reset testBoard1
 printfn " Branch: 4a - %b" (distribute testBoard1 Player2 4 = ([|0;3;3;3;0;4;4;0;4;3;3;3;3;3|], Player2, 8))
 testBoard1 <- [|0;3;3;3;3;3;3;0;3;3;3;3;3;3|] // reset testBoard1
-
-printfn "Whitebox-testning af funktion getMove"
-// Uncomment lines to test with input at end of each line
-//printfn " Branch: 1a - %b" (getMove testBoard Player1 "" = 4) // input 4
-//printfn " Branch: 2a - %b" (getMove testBoard Player1 "" = 99) // input 8
-//printfn " Branch: 2b - %b" (getMove testBoard Player2 "" = 99) // input 3
-//printfn " Branch: 3a - %b" (getMove testBoard2 Player1 "" = 98) // input 1
-//printfn " Branch: 3b - %b" (getMove testBoard2 Player2 "" = 98) // input 8
