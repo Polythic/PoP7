@@ -24,10 +24,10 @@ let isGameOver (b: board) : bool =
   if i = 7 then
     true
   else
-    i <- 7
-    while b.[i] = 0 && i < 13 do
+    i <- 8
+    while b.[i] = 0 && i < 14 do
       i <- i + 1
-    if i = 13 then
+    if i = 14 then
       true
     else
       false
@@ -81,8 +81,13 @@ let distribute (b:board) (p:player) (i:pit) : board * player * pit =
     else
       pi <- pi + 1
 
-  let finalPit = pi - 1
-  if b.[finalPit] = 1 && b.[finalPit] <> b.[home] then
+  let finalPit =
+    if pi <> 0 then
+      pi - 1
+    else
+      13
+
+  if b.[finalPit] = 1 && finalPit <> home && b.[14-(finalPit)] <> 0 then
     b.[home] <- b.[home] + b.[14-(finalPit)]
     b.[14-(finalPit)] <- 0
     b.[home] <- b.[home] + 1
